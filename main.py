@@ -332,7 +332,6 @@ class Ui(QtWidgets.QMainWindow):
                 
             else:
                 self.runCommand(True,0)
-                os.system("systemctl disable voltorb.service --now &")
         
     def btnReset_Clicked(self):
         self.txtTemp.setText("0.0")
@@ -358,6 +357,7 @@ class Ui(QtWidgets.QMainWindow):
         
         self.runCommand(True,0)
         self.runCommand(True,1)
+        os.system("systemctl disable voltorb.service --now &")
         self.statusBar().showMessage("Values are reset to 0.0.")
     
     def actionRefresh_Triggered(self):
