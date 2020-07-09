@@ -1,0 +1,15 @@
+[Unit]
+Description=Voltorb battery/AC watch service
+After=suspend.target
+After=hibernate.target
+After=hybrid-sleep.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/python3 /etc/Voltorb/voltorb_service.py
+
+[Install]
+WantedBy=multi-user.target
+WantedBy=suspend.target
+WantedBy=hibernate.target
+WantedBy=hybrid-sleep.target 

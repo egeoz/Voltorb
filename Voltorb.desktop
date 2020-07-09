@@ -1,0 +1,13 @@
+[Desktop Entry]
+Comment=An easy way to undervolt your Intel CPU
+Exec=pkexec env DISPLAY=$DISPLAY XAUTHORITY=$XAUTHORITY /usr/local/bin/voltorb
+GenericName=Undervolting GUI
+Icon=/etc/Voltorb/icon.png
+Name=Voltorb
+NoDisplay=false
+Path[$e]=
+StartupNotify=true
+Terminal=0
+TerminalOptions=
+Type=Application
+
