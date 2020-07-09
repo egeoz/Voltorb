@@ -331,6 +331,7 @@ class Ui(QtWidgets.QMainWindow):
             else:
                 self.runCommand(True,0)
                 
+            os.system("systemctl disable voltorb.service --now &")    
             os.system("systemctl enable voltorb.service --now &")
             self.statusBar().showMessage("Enabled Voltorb service")
         
