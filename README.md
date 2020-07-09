@@ -2,7 +2,7 @@
 
 # Features:
 - Profile and general modes.
-- When discharging battery mode is automatically loaded and when on AC power performance mode is loaded.
+- Automatic undervolting at boot and battery/AC depending on the profile settings.
 
 # Requirements
 - An Intel CPU that is 4th generation and newer(Haswell).
