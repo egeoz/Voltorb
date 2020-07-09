@@ -6,7 +6,8 @@ After=hybrid-sleep.target
 
 [Service]
 Type=oneshot
-ExecStart=/usr/bin/python3 /etc/Voltorb/voltorb_service.py
+ExecStartPre=/bin/sleep 30
+ExecStart=/usr/bin/python3 /etc/Voltorb/voltorb_service.py &
 
 [Install]
 WantedBy=multi-user.target
