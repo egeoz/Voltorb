@@ -1,5 +1,5 @@
 # Voltorb: Basic Undervolting GUI for Linux
-![Main Window](https://raw.githubusercontent.com/egeoz/Voltorb/master/Screenshot.png)
+![Main Window](https://raw.githubusercontent.com/egeoz/Voltorb/master/Screenshot.png | width=200)
 
 #### Features:
 - Profile and general modes.
