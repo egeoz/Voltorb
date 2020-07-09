@@ -24,4 +24,4 @@ sudo ./uninstall.sh
 # TODO
 - Support for init systems other than systemd
 - Stress test
-..
+- ..
