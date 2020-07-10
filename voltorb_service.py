@@ -36,7 +36,8 @@ if profilesEnabled():
         applySettings(batteryValuesFile)
     else:
         applySettings(perfValuesFile)
-        
+    
+    print("Voltorb service has started.")
     while True:
         if isOnBattery()!=prevState:
             if isOnBattery()==0:
@@ -51,6 +52,5 @@ if profilesEnabled():
         time.sleep(10)
 
 else:
-    print("Voltorb service started.")
+    print("Voltorb service has started.")
     applySettings(genValuesFile)
-

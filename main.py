@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from PyQt5 import QtWidgets,QtGui, uic
-import sys,subprocess,os,threading,json
+import sys,subprocess,os,threading,json,linecache
 
 configFile="/etc/Voltorb/config"
 batteryValuesFile="/etc/Voltorb/battery_values"
@@ -19,7 +19,7 @@ class Ui(QtWidgets.QMainWindow):
     
     
         self.lblTemp=self.findChild(QtWidgets.QLabel,"lblTemp")
-    
+        self.lblCPU=self.findChild(QtWidgets.QLabel,"lblCPU")
     
         self.checkBoxProfile=self.findChild(QtWidgets.QCheckBox,"checkBoxProfile")
         self.btnSave=self.findChild(QtWidgets.QPushButton,"btnSave")
@@ -66,16 +66,34 @@ class Ui(QtWidgets.QMainWindow):
         self.actionAbout.triggered.connect(self.actionAbout_Triggered)
         
         self.setWindowIcon(QtGui.QIcon("/etc/Voltorb/icon.png"))
+        self.lblCPU.setText(self.getCPU())
         
         self.show()
     
-    def notRoot(self):
-        QtWidgets.QMessageBox.warning(self,"Error","This program requires to be run as root!")
-        sys.exit()
+    def checks(self):
+        self.isRoot()
+        self.isUndervoltInstalled()
+        self.isCompatible()
     
-    def noUndervolt(self):
-        QtWidgets.QMessageBox.warning(self,"Error","Cannot find the undervolt binary, is it instaled correctly?")
-        sys.exit()
+    def isRoot(self):
+        if os.geteuid() != 0:
+            QtWidgets.QMessageBox.warning(self,"Error","This program requires to be run as root!")
+            sys.exit()
+    
+    def getCPU(self):
+        return ((linecache.getline("/proc/cpuinfo",5)).split(": "))[1]
+    
+    def isCompatible(self):
+        if (self.getCPU().split(" "))[0]!="Intel(R)":
+            QtWidgets.QMessageBox.warning(self,"Error","This tool is only compatible with Intel CPUs!")
+            sys.exit()        
+    
+    def isUndervoltInstalled(self):
+        try:
+            subprocess.call("undervolt")
+        except OSError:
+            QtWidgets.QMessageBox.warning(self,"Error","Cannot find the undervolt binary, is it instaled correctly?")
+            sys.exit()
 
     def isOnBattery(self):
         out=subprocess.getoutput("acpi -b")
@@ -375,15 +393,7 @@ class Ui(QtWidgets.QMainWindow):
 def main():
     app = QtWidgets.QApplication(sys.argv)
     window = Ui()
-    
-    if os.geteuid() != 0:
-        window.notRoot()
-    
-    try:
-        subprocess.call("undervolt")
-    except OSError:
-        window.noUndervolt()
-    
+    window.checks()
     window.loadValues()
     app.exec_()
 

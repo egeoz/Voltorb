@@ -1,5 +1,7 @@
 #/bin/bash
 
+systemctl disable voltorb.service --now
+
 rm -vrf /etc/Voltorb
 
 rm -v /usr/local/bin/voltorb

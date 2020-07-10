@@ -8,6 +8,7 @@
 #### Requirements
 - An Intel CPU that is 4th generation and newer(Haswell).
 - PyQt5
+- acpi
 - [undervolt](https://github.com/georgewhewell/undervolt) (The installation script automatically installs undervolt)
 
 #### Installation
@@ -26,3 +27,4 @@ sudo ./uninstall.sh
 - Support for init systems other than systemd
 - Stress test
 - More aesthetic GUI
+

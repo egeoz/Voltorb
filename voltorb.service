@@ -1,13 +1,15 @@
 [Unit]
-Description=Voltorb battery/AC watch service
+Description=Voltorb Battery/AC watchdog service
 After=suspend.target
 After=hibernate.target
 After=hybrid-sleep.target
 
 [Service]
-Type=oneshot
-ExecStartPre=/bin/sleep 30
-ExecStart=/usr/bin/python3 /etc/Voltorb/voltorb_service.py &
+Type=simple
+ExecStartPre=/bin/sleep 15
+ExecStart=/usr/bin/python3 /etc/Voltorb/voltorb_service.py 
+Environment=PYTHONUNBUFFERED=1
+Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target
