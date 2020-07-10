@@ -27,4 +27,4 @@ sudo ./uninstall.sh
 - Support for init systems other than systemd
 - Stress test
 - setup.py
-- Ubuntu and AUR packagee
+- Packages for Ubuntu and Arch
