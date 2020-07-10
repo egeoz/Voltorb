@@ -26,5 +26,5 @@ sudo ./uninstall.sh
 #### TODO
 - Support for init systems other than systemd
 - Stress test
-- More aesthetic GUI
-
+- setup.py
+- Ubuntu and AUR packagee
